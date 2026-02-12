@@ -1,11 +1,9 @@
 import requests
 import streamlit as st
 
-# ─── Configuration ───────────────────────────────────────────────────────────
 
 API_BASE_URL = "http://localhost:8000"
 
-# ─── Page Setup ──────────────────────────────────────────────────────────────
 
 st.set_page_config(
     page_title="RAG Chat",
@@ -16,13 +14,11 @@ st.set_page_config(
 st.title("📄 RAG Chat Application")
 st.caption("Upload documents and ask questions about them")
 
-# ─── Session State ───────────────────────────────────────────────────────────
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
 
-# ─── API Client Functions ────────────────────────────────────────────────────
 
 
 def index_document(uploaded_file) -> dict:
@@ -48,7 +44,6 @@ def check_health() -> dict:
     return response.json()
 
 
-# ─── Sidebar: Backend Status & File Upload ───────────────────────────────────
 
 with st.sidebar:
     st.header("⚙️ Settings")
@@ -99,7 +94,6 @@ with st.sidebar:
         st.rerun()
 
 
-# ─── Chat Display ────────────────────────────────────────────────────────────
 
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
@@ -110,7 +104,6 @@ for message in st.session_state.messages:
                     st.write(f"• {source}")
 
 
-# ─── Chat Input ──────────────────────────────────────────────────────────────
 
 if prompt := st.chat_input("Ask a question about your documents..."):
     # Display user message
