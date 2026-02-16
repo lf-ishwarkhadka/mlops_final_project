@@ -14,9 +14,10 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
+    image: mlops:backend
     container_name: rag-backend
     ports:
-      - "8000:8000"
+      - "${BACKEND_PORT:-8000}:8000"
     environment:
       - QDRANT_HOST=qdrant
       - QDRANT_PORT=6333
@@ -33,11 +34,12 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+    image: mlops:frontend
     container_name: rag-frontend
     ports:
-      - "8501:8501"
+      - "${FRONTEND_PORT:-8501}:8501"
     environment:
-      - API_BASE_URL=http://rag-backend:8000
+      - API_BASE_URL=http://${EC2_IP:-localhost}:${BACKEND_PORT:-8000}
     depends_on:
       - backend
     networks:
