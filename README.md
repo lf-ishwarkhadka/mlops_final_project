@@ -223,31 +223,6 @@ docker compose logs backend
 ```bash
 docker system prune -a
 ```
-
-## Cost Optimization
-
-- Use t3.medium for development (~$30/month)
-- Use spot instances for 70% cost savings
-- Stop instance when not in use
-- Use S3 for document storage instead of EBS
-
-## Security Best Practices
-
-- ✅ Use IAM roles instead of access keys
-- ✅ Restrict security groups to specific IPs
-- ✅ Use HTTPS (add Nginx with Let's Encrypt)
-- ✅ Rotate Docker Hub tokens regularly
-- ✅ Enable CloudWatch logging
-- ✅ Regular security updates: `sudo apt update && sudo apt upgrade`
-
-## Tech Stack
-
-- **Backend**: FastAPI, PyTorch, Transformers, Qdrant
-- **Frontend**: Streamlit
-- **Infrastructure**: Terraform, AWS EC2
-- **CI/CD**: GitHub Actions, Docker Hub
-- **Models**: BAAI/bge-small-en-v1.5 (embeddings), Qwen2-0.5B (LLM)
-
 ## License
 
 MIT
